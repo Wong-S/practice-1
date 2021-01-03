@@ -237,6 +237,72 @@ class Solution:
 # [1, 2, 2, 1]
 
 # 80ms, so slow. Runtime of O(n)
+# Time complexity of Python reverse is O(n) or linear time
 
 # Next challenge, is slow and fast pointer....to implement here
+
+# ===============================================================
+# Q4: Merge Two Sorted Lists (21)
+
+# Merge two sorted linked lists and return it as a new sorted list.
+# The new list should be made by splicing together the nodes of the first two lists.
+
+# Test Cases:
+# Input: l1 = [1,2,4], l2 = [1,3,4]
+# Output: [1,1,2,3,4,4]
+# Example 2:
+
+# Input: l1 = [], l2 = []
+# Output: []
+
+# Example 3:
+
+# Input: l1 = [], l2 = [0]
+# Output: [0]
+
+# Special Cases: None, One, Many
+# See test cases above
+
+# Thought/Pseudo:
+# Know the list is already sorted! Both of them
+# Create list_one and traverse through the linked list and add to this array
+# Create list_two and traverse through the linked list and add to this array
+# Create an empty new list, hold the final sorted values
+# Concatenate the two lists together into a new list
+# Sort the new list together.
+# use the sorted or sort method Python
+# Sorting algorithmn (Merge sort??)
+
+# Questions:
+# Can we use the Python sort method?
+# Are the linked list the same number of items or length? - NO, as seen in test cases
+
+
+# Code:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        lst_1 = []  # Start with the head added to lst
+        lst_2 = []
+
+        curr_node_1 = l1
+        curr_node_2 = l2
+
+        while curr_node_1 != None:
+            lst_1.append(curr_node_1)
+            next_node = l1.next  # next node after head
+            curr_node_1 = next_node  # update the head
+
+        while curr_node_2 != None:
+            lst_2.append(curr_node_2)
+            next_node = l2.next
+            curr_node_2 = next_node
+
+        lst_1_and_2 = lst_1 + lst_2  # concatenate the two lists together
+
+        return sorted(lst_1_and_2)  # return sorted list
 

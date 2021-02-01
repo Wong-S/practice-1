@@ -35,20 +35,26 @@
 # NVM:
 # Just iterate and find the sum. NO need for window-slide method
 
+# Note: The elements in the array may not be in order, so must be sorted
+
 # Code:
 def min_max_sum(arr):
     windowSum = 0
 
-    for num in arr:
+    arr_sorted = sorted(arr)
+    for num in arr_sorted:
         windowSum += num
 
-    max_num = windowSum - arr[0]
-    min_num = windowSum - arr[-1]
+    max_num = windowSum - arr_sorted[0]
+    min_num = windowSum - arr_sorted[-1]
 
     print(
         min_num, max_num
     )  # Returns a tuple (min_num, max_num) if you use return() instead of print()
 
+
 # Call the function:
 min_max_sum([1, 3, 5, 7, 9])
+
+min_max_sum([7, 69, 2, 221, 8974])
 

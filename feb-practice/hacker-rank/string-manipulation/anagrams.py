@@ -45,21 +45,50 @@ print(
 print(makeAnagram("cde", "dcf"))  # Pass test case
 
 # ======================
-# Alt method.
+# Alt method:
+
+from collections import Counter
+import sys
+
+
 def makeAnagram(a, b):
-    combine_words = a + b
 
-    dict_words = {}
-    for char in combine_words:
-        dict_words[char] = dict_words.get(char, 0) + 1
+    res = 0
 
-    print(dict_words)
-    count_deletions = 0
-    for key, value in dict_words.items():
-        if value == 1:
-            count_deletions += 1
+    str_1 = a.strip()
+    print(str_1)
 
-    return count_deletions
+    str_2 = b.strip()
+    print(str_2)
+
+    cnt1 = Counter(str_1)
+    print(
+        cnt1
+    )  # Counter({'y': 3, 'c': 2, 'x': 2, 'm': 2, 'f': 1, 'r': 1, 'z': 1, 'w': 1, 's': 1, 'a': 1, 'n': 1, 'l': 1, 'i': 1, 'g': 1, 'v': 1})
+    # Sorts it in decsending order
+    cnt2 = Counter(str_2)
+    print(
+        cnt2
+    )  # Counter({'m': 3, 'j': 2, 'w': 2, 'r': 2, 'h': 2, 'p': 2, 'o': 2, 'b': 2, 'e': 2, 'x': 1, 't': 1, 'v': 1, 'u': 1, 'l': 1, 'd': 1, 'q': 1, 'i': 1, 's': 1, 'g': 1, 'k': 1})
+
+    cnt3 = {}
+
+    for (
+        key,
+        val,
+    ) in (
+        cnt1.items()
+    ):  # Iterating over the dictionary; starts from key at 'f' and it's value, subtracts it from the same key 'f' (if present) in the second dictionary
+        cnt3[key] = abs(val - cnt2[key])  # Returns absolute positive value in new dict
+
+    # WE iterate again because checking the second dict for any differences
+    for key, val in cnt2.items():
+        cnt3[key] = abs(val - cnt1[key])
+
+    for val in cnt3.values():
+        res += val
+
+    return res
 
 
 print(makeAnagram("fcrxzwscanmligyxyvym", "jxwtrhvujlmrpdoqbisbwhmgpmeoke"))

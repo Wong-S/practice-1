@@ -34,7 +34,7 @@ from collections import Counter, defaultdict
 
 
 def addBinary(a: str, b: str) -> str:
-
+    # =================================================================
     new_binary_str = ""
 
     dict_a = {}
@@ -43,7 +43,7 @@ def addBinary(a: str, b: str) -> str:
         dict_a[count_a] = i
         count_a += 1
     print(dict_a)
-
+    # =================================================================
     x = defaultdict(list)
     y = 1
     for i in a:
@@ -51,7 +51,7 @@ def addBinary(a: str, b: str) -> str:
         y += 1
 
     print(x)  # defaultdict(<class 'list'>, {1: ['1'], 2: ['1']})
-
+    # =================================================================
     x = defaultdict(int)
     y = 1
     for i in a:
@@ -59,6 +59,24 @@ def addBinary(a: str, b: str) -> str:
         y += 1
 
     print(x)  # defaultdict(<class 'list'>, {1: ['1'], 2: ['1']})
+    # =================================================================
+
+    x = defaultdict(str)
+    y = 1
+    for i in a:
+        x[y] = i  # for int, no need for append
+        y += 1
+
+    print(x)  # defaultdict(<class 'str'>, {1: '1', 2: '1'})
+    # =================================================================
+    # NOTE: This below is similar to using the Counter method. So it'll count the occurrences for each key
+    # Can also use the .get() method if you aren't using collections dictionary. Notice you'll need ot use an int class. As string cannot add those int numbers
+    x = defaultdict(int)
+
+    for i in a:
+        x[i] += 1  # for int, no need for append
+
+    print(x)  # defaultdict(<class 'int'>, {'1': 2})
 
 
 addBinary("11", "1")

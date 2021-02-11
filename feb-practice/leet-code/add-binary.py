@@ -83,4 +83,130 @@ addBinary("11", "1")
 
 # ==================================================
 # ==================================================
+# CODING PORTION:
+
+a = "11"
+b = "1"
+# Output: "100"
+# Example 2:
+def binary_addition(str1, str2):
+    dict_1 = defaultdict(int)
+
+
+binary_addition("11", "1")
+
+
+def add_binary(a, b):
+    if len(a) >= len(b):
+        a = a
+        b = b
+
+    else:
+        a = b
+        b = a
+
+    carry_int = 0
+
+    binary_lst = []  # [0,0,1] --> 100
+
+    # for indx, char in enumerate(str1[::-1]):
+    #     print (char)
+    #     print(int(str2[indx -1]))  #1 --> KEEPS GOINT AT INDEX [-1] so repeats last element
+
+    for index, char in enumerate(a[::-1]):
+        if carry_int != 1:
+            total_sum = int(char) + int(b[index - 1])
+        else:
+            print(char)
+            print(int(b[index - 1]))  # 1 instead of 0
+            total_sum = int(char) + int(b[index - 1]) + carry_int
+
+        if total_sum > 2:
+            if carry_int == 1:
+                binary_lst.append("1")
+            else:
+                carry_int = 1
+                binary_lst.append("0")
+
+        elif total_sum == 2:
+
+            # if carry_int == 1:
+            #     carry_int = 1
+            #     binary_lst.append("1")
+            # else:
+            carry_int = 1
+            binary_lst.append("0")
+
+        elif total_sum == 0:  # 0,1,2
+            if carry_int == 1:
+                total_sum += carry_int
+                binary_lst.append(str(total_sum))
+
+            else:
+                binary_lst.append("0")
+
+        elif total_sum == 1:
+            if carry_int == 1:
+
+                binary_lst.append("0")
+
+            else:
+                binary_lst.append("1")
+
+    if carry_int == 1:
+        binary_lst.append("1")
+
+    # This step converts the string list into a string final type. Note: If you use an int list instead of string, it'll not join properly! It must be converted to string!
+    binary_str = ""
+    binary_lst.reverse()
+    return binary_str.join(binary_lst)
+
+
+print(add_binary("1", "111"))
+
+
+# ==================================================
+# ==================================================
+# import collections
+
+# def gridIllumination(N, lamps, queries):
+#     """
+#     :type N: int
+#     :type lamps: List[List[int]]
+#     :type queries: List[List[int]]
+#     :rtype: List[int]
+#     """
+#     col = collections.defaultdict(int)
+#     row = collections.defaultdict(int)
+#     diag1 = collections.defaultdict(int)
+#     diag2 = collections.defaultdict(int)
+#     lamps = set((i, j) for i, j in lamps)
+
+#     for i, j in lamps:
+#         col[j] += 1
+#         row[i] += 1
+#         diag1[i - j] += 1
+#         diag2[i + j] += 1
+
+#     res = []
+#     for i, j in queries:
+#         res.append(
+#             int(row[i] > 0 or col[j] > 0 or diag1[i - j] > 0 or diag2[i + j] > 0)
+#         )
+#         for di in [-1, 0, 1]:
+#             for dj in [-1, 0, 1]:
+#                 ni, nj = i + di, j + dj
+#                 if ni < 0 or ni >= N or nj < 0 or nj >= N:
+#                     continue
+#                 if (ni, nj) in lamps:
+#                     row[ni] -= 1
+#                     col[nj] -= 1
+#                     diag1[ni - nj] -= 1
+#                     diag2[ni + nj] -= 1
+#                     lamps -= {(ni, nj)}
+#     print(res)
+#     return res
+
+
+# print(gridIllumination(8, [[4, 3], [4, 4]], [[3, 4], [7, 6]]))
 

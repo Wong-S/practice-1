@@ -167,6 +167,13 @@ print(add_binary("1", "111"))
 
 # ==================================================
 # ==================================================
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        return bin(int(a, 2) + int(b, 2))[2:]
+
+
+# ==================================================
+# ==================================================
 # import collections
 
 # def gridIllumination(N, lamps, queries):

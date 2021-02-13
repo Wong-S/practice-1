@@ -35,3 +35,85 @@
 # each element of array A is an integer within the range [−1,000..1,000].
 # In your solution, focus on correctness. The performance of your solution will not be the focus of the assessment.
 
+# Thought/Pseudo
+
+# Given K, do a reverse splice in that list to take out what last numbers will be placed in front
+# Iterate through the original list and keep adding elements until it reaches the first element in the spliced list
+# Return the completed/shifted list
+
+
+# Code:
+def shift_list(arr, k):
+
+    shifted_lst = arr[-k:]  # [9,7,6]
+
+    for index, num in enumerate(arr):
+        if (
+            index == (k - 1) and num == shifted_lst[0]
+        ):  # NOTE: The last index in the list, if reading in reverse, is NOT 0, but -1
+            break
+        else:
+            shifted_lst.append(num)
+
+    # Checking if the lengths of the new array is same as old array
+    if len(arr) == len(shifted_lst):
+        return shifted_lst
+
+    else:
+        return arr
+
+
+print(shift_list([3, 8, 9, 7, 6], 3))
+
+print(shift_list([0, 0, 0], 1))
+
+print(shift_list([1, 2, 3, 4], 4))
+
+print(shift_list([4, 2, 3, 4, 7, 1], 3))
+
+# ===================================
+# Alternative Method to pass the last test case that I made above.....
+# use the length instead and splice method. Only passes 75 percent
+def shift_list(arr, k):
+
+    # Edge case:
+    if k == 0:
+        return arr
+
+    shifted_lst = arr[-k:]  # [9,7,6] , [0] , [1,2,3,4]
+
+    splice_i = len(arr) - k
+    remaining_num_lst = arr[:splice_i]
+
+    combine_lst = shifted_lst + remaining_num_lst
+    return combine_lst
+
+
+print(shift_list([3, 8, 9, 7, 6], 3))
+
+print(shift_list([0, 0, 0], 1))
+
+print(shift_list([1, 2, 3, 4], 4))
+
+print(shift_list([4, 2, 3, 4, 7, 1], 3))
+
+print(shift_list([-4], 0))  # [-4]   #Edge Case: K = 0
+
+print(shift_list([1, 1, 2, 3, 5], 42))  # [3,5,1,1,2]  #Edge case: K >= N
+# EDGE CASES:
+# THINGS TO THINK ABOUT: One, None, Many , NEGATIVE numbers
+
+# ===================Alt method......
+def shift_list(arr, k):
+
+    # Edge case:
+    if k == 0:
+        return arr
+
+    shifted_lst = arr[-k:]  # [9,7,6] , [0] , [1,2,3,4]
+
+    splice_i = len(arr) - k
+    remaining_num_lst = arr[:splice_i]
+
+    combine_lst = shifted_lst + remaining_num_lst
+    return combine_lst

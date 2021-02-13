@@ -103,17 +103,39 @@ print(shift_list([1, 1, 2, 3, 5], 42))  # [3,5,1,1,2]  #Edge case: K >= N
 # EDGE CASES:
 # THINGS TO THINK ABOUT: One, None, Many , NEGATIVE numbers
 
-# ===================Alt method......
-def shift_list(arr, k):
+# ===================Alt method......100% pass
+def shift_list(A, K):
 
     # Edge case:
-    if k == 0:
-        return arr
+    if K == 0 or A == []:
+        return A
 
-    shifted_lst = arr[-k:]  # [9,7,6] , [0] , [1,2,3,4]
+    count = 0
+    shifted_lst = []
+    while count < K:
+        # Take last element and insert in front of list
+        last_ele = A.pop()
 
-    splice_i = len(arr) - k
-    remaining_num_lst = arr[:splice_i]
+        # Insert into front of list
+        A.insert(0, last_ele)
 
-    combine_lst = shifted_lst + remaining_num_lst
-    return combine_lst
+        count += 1
+
+    return A
+
+
+print(shift_list([3, 8, 9, 7, 6], 3))
+
+print(shift_list([0, 0, 0], 1))
+
+print(shift_list([1, 2, 3, 4], 4))
+
+print(shift_list([4, 2, 3, 4, 7, 1], 3))
+
+print(shift_list([-4], 0))  # [-4]   #Edge Case: K = 0
+
+print(shift_list([1, 1, 2, 3, 5], 42))  # [3,5,1,1,2]  #Edge case: K >= N
+
+print(shift_list([], 1))
+# EDGE CASES:
+# THINGS TO THINK ABOUT: One, None, Many , NEGATIVE numbers
